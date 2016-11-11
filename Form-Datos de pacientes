@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:orx="http://openrosa.org/jr/xforms" xmlns="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa" xmlns:vellum="http://commcarehq.org/xforms/vellum">
+	<h:head>
+		<h:title>Datos de pacientes</h:title>
+		<model>
+			<instance>
+				<data xmlns:jrm="http://dev.commcarehq.org/jr/xforms" xmlns="http://openrosa.org/formdesigner/A3E9A80B-5949-4C50-B9A3-6E05326BCCC2" uiVersion="1" version="1" name="Datos de pacientes">
+					<nombres_paciente />
+					<apellidos_paciente />
+					<nombre_firma />
+					<tiene_celular />
+					<poner_numero />
+					<fecha_nacimiento />
+					<edad />
+					<mostrar_edad />
+					<estado_civl />
+					<estudia />
+					<modulo_estudio />
+					<trabaja />
+					<area_trabajo />
+					<manera_trabajo />
+					<descendencia />
+					<cantidad_descendencia />
+					<datos_descendencia jr:template="">
+						<nombre_nino />
+						<fecha_nacimiento_nino />
+						<mostrar_edad_nino />
+						<calcular_edad_nino />
+						<sexo_nino />
+					</datos_descendencia>
+					<enfermedades_cronicas />
+					<mencionar_cronica />
+					<varias_enfermedades />
+					<enfermedad_respiratoria />
+					<accidentes_laborales />
+					<que_accidente />
+					<presenta_malestar />
+					<que_malestar />
+					<lugar_cuerpo_malestar />
+					<tiempo_con_malestares />
+					<frecuencia_malestares />
+					<duracion_malestares />
+					<siente_dolor />
+					<que_tan_intenso />
+					<inquietudes_paciente />
+					<escribir_inquietud />
+					<firma_paciente />
+				</data>
+			</instance>
+			<bind vellum:nodeset="#form/nombres_paciente" nodeset="/data/nombres_paciente" type="xsd:string" required="true()" />
+			<bind vellum:nodeset="#form/apellidos_paciente" nodeset="/data/apellidos_paciente" type="xsd:string" required="true()" />
+			<bind vellum:nodeset="#form/nombre_firma" nodeset="/data/nombre_firma" />
+			<bind vellum:nodeset="#form/tiene_celular" nodeset="/data/tiene_celular" required="true()" />
+			<bind vellum:nodeset="#form/poner_numero" nodeset="/data/poner_numero" type="xsd:string" constraint="string-length(.) = 8" jr:constraintMsg="jr:itext('poner_numero-constraintMsg')" vellum:relevant="#form/tiene_celular = 'si_celular'" relevant="/data/tiene_celular = 'si_celular'" />
+			<bind vellum:nodeset="#form/fecha_nacimiento" nodeset="/data/fecha_nacimiento" type="xsd:date" constraint=". &lt;= today()" jr:constraintMsg="jr:itext('fecha_nacimiento-constraintMsg')" required="false()" />
+			<bind vellum:nodeset="#form/edad" nodeset="/data/edad" vellum:calculate="int((today() - date(#form/fecha_nacimiento)) div 365.25)" calculate="int((today() - date(/data/fecha_nacimiento)) div 365.25)" />
+			<bind vellum:nodeset="#form/mostrar_edad" nodeset="/data/mostrar_edad" />
+			<bind vellum:nodeset="#form/estado_civl" nodeset="/data/estado_civl" required="true()" />
+			<bind vellum:nodeset="#form/estudia" nodeset="/data/estudia" required="true()" />
+			<bind vellum:nodeset="#form/modulo_estudio" nodeset="/data/modulo_estudio" vellum:relevant="#form/estudia = 'si_estudio'" relevant="/data/estudia = 'si_estudio'" required="false()" />
+			<bind vellum:nodeset="#form/trabaja" nodeset="/data/trabaja" required="true()" />
+			<bind vellum:nodeset="#form/area_trabajo" nodeset="/data/area_trabajo" type="xsd:string" vellum:relevant="#form/trabaja = 'si_trabaja'" relevant="/data/trabaja = 'si_trabaja'" />
+			<bind vellum:nodeset="#form/manera_trabajo" nodeset="/data/manera_trabajo" vellum:relevant="#form/trabaja = 'si_trabaja'" relevant="/data/trabaja = 'si_trabaja'" />
+			<bind vellum:nodeset="#form/descendencia" nodeset="/data/descendencia" required="true()" />
+			<bind vellum:nodeset="#form/cantidad_descendencia" nodeset="/data/cantidad_descendencia" type="xsd:int" vellum:relevant="#form/descendencia = 'si_descendencia'" relevant="/data/descendencia = 'si_descendencia'" />
+			<bind vellum:nodeset="#form/datos_descendencia" nodeset="/data/datos_descendencia" vellum:relevant="#form/descendencia = 'si_descendencia'" relevant="/data/descendencia = 'si_descendencia'" />
+			<bind vellum:nodeset="#form/datos_descendencia/nombre_nino" nodeset="/data/datos_descendencia/nombre_nino" type="xsd:string" />
+			<bind vellum:nodeset="#form/datos_descendencia/fecha_nacimiento_nino" nodeset="/data/datos_descendencia/fecha_nacimiento_nino" type="xsd:date" />
+			<bind vellum:nodeset="#form/datos_descendencia/mostrar_edad_nino" nodeset="/data/datos_descendencia/mostrar_edad_nino" />
+			<bind vellum:nodeset="#form/datos_descendencia/calcular_edad_nino" nodeset="/data/datos_descendencia/calcular_edad_nino" vellum:calculate="int((today() - date(#form/datos_descendencia/fecha_nacimiento_nino)) div 365.25)" calculate="int((today() - date(/data/datos_descendencia/fecha_nacimiento_nino)) div 365.25)" />
+			<bind vellum:nodeset="#form/datos_descendencia/sexo_nino" nodeset="/data/datos_descendencia/sexo_nino" />
+			<bind vellum:nodeset="#form/enfermedades_cronicas" nodeset="/data/enfermedades_cronicas" required="true()" />
+			<bind vellum:nodeset="#form/mencionar_cronica" nodeset="/data/mencionar_cronica" type="xsd:string" vellum:relevant="#form/enfermedades_cronicas = 'si_cronica'" relevant="/data/enfermedades_cronicas = 'si_cronica'" />
+			<bind vellum:nodeset="#form/varias_enfermedades" nodeset="/data/varias_enfermedades" required="true()" />
+			<bind vellum:nodeset="#form/enfermedad_respiratoria" nodeset="/data/enfermedad_respiratoria" type="xsd:string" vellum:relevant="selected(#form/varias_enfermedades, 'enfermedad_respiratoria')" relevant="selected(/data/varias_enfermedades, 'enfermedad_respiratoria')" />
+			<bind vellum:nodeset="#form/accidentes_laborales" nodeset="/data/accidentes_laborales" required="true()" />
+			<bind vellum:nodeset="#form/que_accidente" nodeset="/data/que_accidente" type="xsd:string" vellum:relevant="#form/accidentes_laborales = 'si_accidente_laboral'" relevant="/data/accidentes_laborales = 'si_accidente_laboral'" />
+			<bind vellum:nodeset="#form/presenta_malestar" nodeset="/data/presenta_malestar" required="true()" />
+			<bind vellum:nodeset="#form/que_malestar" nodeset="/data/que_malestar" type="xsd:string" vellum:relevant="#form/presenta_malestar = 'si_malestar'" relevant="/data/presenta_malestar = 'si_malestar'" />
+			<bind vellum:nodeset="#form/lugar_cuerpo_malestar" nodeset="/data/lugar_cuerpo_malestar" vellum:relevant="#form/presenta_malestar = 'si_malestar'" relevant="/data/presenta_malestar = 'si_malestar'" />
+			<bind vellum:nodeset="#form/tiempo_con_malestares" nodeset="/data/tiempo_con_malestares" vellum:relevant="#form/presenta_malestar = 'si_malestar'" relevant="/data/presenta_malestar = 'si_malestar'" />
+			<bind vellum:nodeset="#form/frecuencia_malestares" nodeset="/data/frecuencia_malestares" vellum:relevant="#form/presenta_malestar = 'si_malestar'" relevant="/data/presenta_malestar = 'si_malestar'" />
+			<bind vellum:nodeset="#form/duracion_malestares" nodeset="/data/duracion_malestares" vellum:relevant="#form/presenta_malestar = 'si_malestar'" relevant="/data/presenta_malestar = 'si_malestar'" />
+			<bind vellum:nodeset="#form/siente_dolor" nodeset="/data/siente_dolor" required="true()" />
+			<bind vellum:nodeset="#form/que_tan_intenso" nodeset="/data/que_tan_intenso" vellum:relevant="#form/siente_dolor = 'si_dolor'" relevant="/data/siente_dolor = 'si_dolor'" />
+			<bind vellum:nodeset="#form/inquietudes_paciente" nodeset="/data/inquietudes_paciente" required="true()" />
+			<bind vellum:nodeset="#form/escribir_inquietud" nodeset="/data/escribir_inquietud" type="xsd:string" vellum:relevant="#form/inquietudes_paciente = 'si_inquietud'" relevant="/data/inquietudes_paciente = 'si_inquietud'" />
+			<bind vellum:nodeset="#form/firma_paciente" nodeset="/data/firma_paciente" type="binary" />
+			<setvalue event="xforms-ready" vellum:ref="#form/nombre_firma" ref="/data/nombre_firma" vellum:value="concat(#form/nombres_paciente, #form/apellidos_paciente)" value="concat(/data/nombres_paciente, /data/apellidos_paciente)" />
+			<setvalue event="xforms-ready" vellum:ref="#form/poner_numero" ref="/data/poner_numero" value="88776655" />
+			<itext>
+				<translation lang="en" default="">
+					<text id="nombres_paciente-label">
+						<value>¿Cuales son los nombres del paciente?</value>
+					</text>
+					<text id="apellidos_paciente-label">
+						<value>¿Cuales son los apellidos del paciente?</value>
+					</text>
+					<text id="tiene_celular-label">
+						<value>¿Tiene numero de celular?</value>
+					</text>
+					<text id="tiene_celular-si_celular-label">
+						<value>si</value>
+					</text>
+					<text id="tiene_celular-no_celular-label">
+						<value>no</value>
+					</text>
+					<text id="poner_numero-label">
+						<value>Ponga su numero de celular</value>
+					</text>
+					<text id="poner_numero-constraintMsg">
+						<value>Recuerde que su numero debe de ser de 8 digitos</value>
+					</text>
+					<text id="fecha_nacimiento-label">
+						<value>Fecha de nacimiento</value>
+					</text>
+					<text id="fecha_nacimiento-constraintMsg">
+						<value>Ponga una fecha válida</value>
+					</text>
+					<text id="mostrar_edad-label">
+						<value>Tu edad es:<output value="/data/edad" vellum:value="#form/edad" /> </value>
+					</text>
+					<text id="estado_civl-label">
+						<value>¿Cual es su estado civil?</value>
+					</text>
+					<text id="estado_civl-soltero-label">
+						<value>soltero</value>
+					</text>
+					<text id="estado_civl-casado-label">
+						<value>casado</value>
+					</text>
+					<text id="estado_civl-divorciado-label">
+						<value>divorciado</value>
+					</text>
+					<text id="estado_civl-viudo-label">
+						<value>viudo</value>
+					</text>
+					<text id="estudia-label">
+						<value>¿Estudia?</value>
+					</text>
+					<text id="estudia-si_estudio-label">
+						<value>si</value>
+					</text>
+					<text id="estudia-no_estudio-label">
+						<value>no</value>
+					</text>
+					<text id="modulo_estudio-label">
+						<value>¿donde?</value>
+					</text>
+					<text id="modulo_estudio-colegio-label">
+						<value>colegio</value>
+					</text>
+					<text id="modulo_estudio-universidad-label">
+						<value>universidad</value>
+					</text>
+					<text id="modulo_estudio-tecnico-label">
+						<value>tecnico</value>
+					</text>
+					<text id="trabaja-label">
+						<value>¿Trabaja?</value>
+					</text>
+					<text id="trabaja-si_trabaja-label">
+						<value>si</value>
+					</text>
+					<text id="trabaja-no_trabaja-label">
+						<value>no</value>
+					</text>
+					<text id="area_trabajo-label">
+						<value>¿En qué area?</value>
+					</text>
+					<text id="manera_trabajo-label">
+						<value>¿De que manera trabaja?</value>
+					</text>
+					<text id="manera_trabajo-tiempo_completo-label">
+						<value>A tiempo completo</value>
+					</text>
+					<text id="manera_trabajo-medio_tiempo-label">
+						<value>A medio tiempo</value>
+					</text>
+					<text id="manera_trabajo-fines_de_semana-label">
+						<value>Solo fines de semana</value>
+					</text>
+					<text id="manera_trabajo-de_vez_en_cuando-label">
+						<value>De vez en cuando</value>
+					</text>
+					<text id="descendencia-label">
+						<value>¿Tiene descendencia?</value>
+					</text>
+					<text id="descendencia-si_descendencia-label">
+						<value>si</value>
+					</text>
+					<text id="descendencia-no_descendencia-label">
+						<value>no</value>
+					</text>
+					<text id="cantidad_descendencia-label">
+						<value>¿Cuantos hijos(as) tiene?</value>
+					</text>
+					<text id="cantidad_descendencia-hint">
+						<value>Ponga este dato en numero</value>
+					</text>
+					<text id="datos_descendencia-label">
+						<value>Datos de los hijos(as)</value>
+					</text>
+					<text id="datos_descendencia/nombre_nino-label">
+						<value>Nombre del niño(a)</value>
+					</text>
+					<text id="datos_descendencia/fecha_nacimiento_nino-label">
+						<value>Fecha de nacimiento del niño(a)</value>
+					</text>
+					<text id="datos_descendencia/mostrar_edad_nino-label">
+						<value>La edad del niño(a) es:<output value="/data/datos_descendencia/calcular_edad_nino" vellum:value="#form/datos_descendencia/calcular_edad_nino" /> </value>
+					</text>
+					<text id="datos_descendencia/sexo_nino-label">
+						<value>Sexo</value>
+					</text>
+					<text id="datos_descendencia/sexo_nino-masculino-label">
+						<value>masculino</value>
+					</text>
+					<text id="datos_descendencia/sexo_nino-femenino-label">
+						<value>femenino</value>
+					</text>
+					<text id="enfermedades_cronicas-label">
+						<value>¿Tienen alguna enfermedad cronica?</value>
+					</text>
+					<text id="enfermedades_cronicas-si_cronica-label">
+						<value>si</value>
+					</text>
+					<text id="enfermedades_cronicas-no_cronica-label">
+						<value>no</value>
+					</text>
+					<text id="mencionar_cronica-label">
+						<value>Mencionela</value>
+					</text>
+					<text id="varias_enfermedades-label">
+						<value>¿Ha tenido alguna de estas?</value>
+					</text>
+					<text id="varias_enfermedades-HTA-label">
+						<value>Hipertension arterial</value>
+					</text>
+					<text id="varias_enfermedades-diabetes-label">
+						<value>Diabetes</value>
+					</text>
+					<text id="varias_enfermedades-IRC-label">
+						<value>Insuficiencia renal cronica</value>
+					</text>
+					<text id="varias_enfermedades-enfermedad_respiratoria-label">
+						<value>Alguna enfemedad respiratoria</value>
+					</text>
+					<text id="varias_enfermedades-ninguna-label">
+						<value>ninguna</value>
+					</text>
+					<text id="enfermedad_respiratoria-label">
+						<value>¿Qué enfermedad respiratoria?</value>
+					</text>
+					<text id="accidentes_laborales-label">
+						<value>¿Há sufrido accidentes laborales?</value>
+					</text>
+					<text id="accidentes_laborales-si_accidente_laboral-label">
+						<value>si</value>
+					</text>
+					<text id="accidentes_laborales-no_accidente_laboral-label">
+						<value>no</value>
+					</text>
+					<text id="que_accidente-label">
+						<value>¿Que accidente?</value>
+					</text>
+					<text id="presenta_malestar-label">
+						<value>¿Presenta algún malestar?</value>
+					</text>
+					<text id="presenta_malestar-si_malestar-label">
+						<value>si</value>
+					</text>
+					<text id="presenta_malestar-no_malestar-label">
+						<value>no</value>
+					</text>
+					<text id="que_malestar-label">
+						<value>¿Que malestar presenta?</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-label">
+						<value>¿En que lugar del cuerpo presenta estos malestares?</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-cabeza-label">
+						<value>cabeza</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-rostro-label">
+						<value>rostro</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-garganta-label">
+						<value>garganta</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-nuca-label">
+						<value>nuca</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-trapecios-label">
+						<value>trapecios</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-hombro_derecho-label">
+						<value>hombro derecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-mano_derecha-label">
+						<value>mano derecha</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-dedos_de_la_mano_derecha-label">
+						<value>dedos de la mano derecha</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-brazo_derecho-label">
+						<value>brazo derecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-ante_brazo_derecho-label">
+						<value>ante brazo derecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-mano_izquierda-label">
+						<value>mano izquierda</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-dedos_de_la_mano_izquierda-label">
+						<value>dedos de la mano izquierda</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-brazo_izquierdo-label">
+						<value>brazo izquierdo</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-ante_brazo_izquierdo-label">
+						<value>ante brazo izquierdo</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-pecho-label">
+						<value>pecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-estomago-label">
+						<value>estomago</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-espalda-label">
+						<value>espalda</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-cintura-label">
+						<value>cintura</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-gluteos-label">
+						<value>gluteos</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-pierna_derecha-label">
+						<value>pierna derecha</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-tobillo_derecho-label">
+						<value>tobillo derecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-talon_derecho-label">
+						<value>talon derecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-pie_derecho-label">
+						<value>pie derecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-dedos_del_pie_derecho-label">
+						<value>dedos del pie derecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-planta_pie_derecho-label">
+						<value>planta pie derecho</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-pierna_izquierda-label">
+						<value>pierna izquierda</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-tobillo_izquierdo-label">
+						<value>tobillo izquierdo</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-talon_izquierdo-label">
+						<value>talon izquierdo</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-pie_izquierdo-label">
+						<value>pie izquierdo</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-dedos_del_pie_izquierdo-label">
+						<value>dedos del pie izquierdo</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-talon_del_pie_izquierdo-label">
+						<value>talon del pie izquierdo</value>
+					</text>
+					<text id="lugar_cuerpo_malestar-Ninguno-label">
+						<value>Ninguno</value>
+					</text>
+					<text id="tiempo_con_malestares-label">
+						<value>¿Cuanto tiempo lleva con estos malestares?</value>
+					</text>
+					<text id="tiempo_con_malestares-Menos_de_un_dia-label">
+						<value>Menos de un dia</value>
+					</text>
+					<text id="tiempo_con_malestares-un_dia-label">
+						<value>un dia</value>
+					</text>
+					<text id="tiempo_con_malestares-dos_a_cinco_dias-label">
+						<value>de dos a cinco dias</value>
+					</text>
+					<text id="tiempo_con_malestares-una_semana-label">
+						<value>una semana</value>
+					</text>
+					<text id="tiempo_con_malestares-de_dos_a_cinco_semanas-label">
+						<value>de dos a cinco semanas</value>
+					</text>
+					<text id="tiempo_con_malestares-un_mes-label">
+						<value>un mes</value>
+					</text>
+					<text id="tiempo_con_malestares-de_dos_a_cinco_meses-label">
+						<value>de dos a cinco meses</value>
+					</text>
+					<text id="tiempo_con_malestares-diez_meses-label">
+						<value>diez meses</value>
+					</text>
+					<text id="tiempo_con_malestares-un_año-label">
+						<value>un año</value>
+					</text>
+					<text id="tiempo_con_malestares-de_dos_a_cinco_años-label">
+						<value>de dos a cinco años</value>
+					</text>
+					<text id="tiempo_con_malestares-mas_de_diez_años-label">
+						<value>mas de diez años</value>
+					</text>
+					<text id="frecuencia_malestares-label">
+						<value>¿Que tan frecuente se le presenta estos malestares?</value>
+					</text>
+					<text id="frecuencia_malestares-cada_minuto-label">
+						<value>cada minuto</value>
+					</text>
+					<text id="frecuencia_malestares-cada_media_hora-label">
+						<value>cada media hora</value>
+					</text>
+					<text id="frecuencia_malestares-cada_hora-label">
+						<value>cada hora</value>
+					</text>
+					<text id="frecuencia_malestares-cada_dia-label">
+						<value>cada_dia</value>
+					</text>
+					<text id="frecuencia_malestares-una_vez_a_la_semana-label">
+						<value>una vez a la semana</value>
+					</text>
+					<text id="frecuencia_malestares-de_dos_a_cinco_veces_a_la_semana-label">
+						<value>de dos a cinco veces a la semana</value>
+					</text>
+					<text id="frecuencia_malestares-mas_de_cinco_veces_a_la_semana-label">
+						<value>mas de cinco veces a la semana</value>
+					</text>
+					<text id="frecuencia_malestares-una_vez_al_mes-label">
+						<value>una vez al mes</value>
+					</text>
+					<text id="frecuencia_malestares-de_dos_a_cinco_veces_al_mes-label">
+						<value>de dos a cinco veces al mes</value>
+					</text>
+					<text id="frecuencia_malestares-mas_de_cinco_veces_al_mes-label">
+						<value>mas de cinco veces al mes</value>
+					</text>
+					<text id="frecuencia_malestares-solo_una_vez_lo_he_sentido-label">
+						<value>solo una vez lo he sentido</value>
+					</text>
+					<text id="frecuencia_malestares-nunca-label">
+						<value>nunca</value>
+					</text>
+					<text id="duracion_malestares-label">
+						<value>¿Cuanto duran los malestares?</value>
+					</text>
+					<text id="duracion_malestares-menos_de_un_minuto-label">
+						<value>menos de un minuto</value>
+					</text>
+					<text id="duracion_malestares-de_2_a_5_minutos-label">
+						<value>de 2 a 5 minutos</value>
+					</text>
+					<text id="duracion_malestares-de_6_a_15_minutos-label">
+						<value>de 6 a 15 minutos</value>
+					</text>
+					<text id="duracion_malestares-una_hora-label">
+						<value>una hora</value>
+					</text>
+					<text id="duracion_malestares-de_dos_a_cinco_horas-label">
+						<value>de dos a cinco horas</value>
+					</text>
+					<text id="duracion_malestares-de_seis_a_quince_horas-label">
+						<value>de seis a quince horas</value>
+					</text>
+					<text id="duracion_malestares-veinticuatro_horas-label">
+						<value>veinticuatro horas</value>
+					</text>
+					<text id="duracion_malestares-nunca_lo_he_medido-label">
+						<value>nunca lo he medido</value>
+					</text>
+					<text id="siente_dolor-label">
+						<value>¿Siente dolor?</value>
+					</text>
+					<text id="siente_dolor-si_dolor-label">
+						<value>si</value>
+					</text>
+					<text id="siente_dolor-no_dolor-label">
+						<value>no</value>
+					</text>
+					<text id="que_tan_intenso-label">
+						<value>¿que tan intenso es el dolor?</value>
+					</text>
+					<text id="que_tan_intenso-A_penas_se_siente-label">
+						<value>A penas se siente</value>
+					</text>
+					<text id="que_tan_intenso-duele_un_poco-label">
+						<value>duele un poco</value>
+					</text>
+					<text id="que_tan_intenso-resistible-label">
+						<value>resistible</value>
+					</text>
+					<text id="que_tan_intenso-duele_mucho-label">
+						<value>duele mucho</value>
+					</text>
+					<text id="que_tan_intenso-el_dolor_me_doble-label">
+						<value>el dolor me dobla</value>
+					</text>
+					<text id="que_tan_intenso-es_insoportable-label">
+						<value>es insoportable</value>
+					</text>
+					<text id="que_tan_intenso-no_lo_se-label">
+						<value>no lo se</value>
+					</text>
+					<text id="inquietudes_paciente-label">
+						<value>¿Tiene inquietudes el paciente?</value>
+					</text>
+					<text id="inquietudes_paciente-si_inquietud-label">
+						<value>si</value>
+					</text>
+					<text id="inquietudes_paciente-no_inquietud-label">
+						<value>no</value>
+					</text>
+					<text id="escribir_inquietud-label">
+						<value>Escribala</value>
+					</text>
+					<text id="firma_paciente-label">
+						<value>Sr/Sra <output value="/data/nombre_firma" vellum:value="#form/nombre_firma" /> </value>
+					</text>
+				</translation>
+			</itext>
+		</model>
+	</h:head>
+	<h:body>
+		<input vellum:ref="#form/nombres_paciente" ref="/data/nombres_paciente">
+			<label ref="jr:itext('nombres_paciente-label')" />
+		</input>
+		<input vellum:ref="#form/apellidos_paciente" ref="/data/apellidos_paciente">
+			<label ref="jr:itext('apellidos_paciente-label')" />
+		</input>
+		<select1 vellum:ref="#form/tiene_celular" ref="/data/tiene_celular">
+			<label ref="jr:itext('tiene_celular-label')" />
+			<item>
+				<label ref="jr:itext('tiene_celular-si_celular-label')" />
+				<value>si_celular</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiene_celular-no_celular-label')" />
+				<value>no_celular</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/poner_numero" ref="/data/poner_numero" appearance="numeric">
+			<label ref="jr:itext('poner_numero-label')" />
+			<alert ref="jr:itext('poner_numero-constraintMsg')" />
+		</input>
+		<input vellum:ref="#form/fecha_nacimiento" ref="/data/fecha_nacimiento">
+			<label ref="jr:itext('fecha_nacimiento-label')" />
+			<alert ref="jr:itext('fecha_nacimiento-constraintMsg')" />
+		</input>
+		<trigger vellum:ref="#form/mostrar_edad" ref="/data/mostrar_edad" appearance="minimal">
+			<label ref="jr:itext('mostrar_edad-label')" />
+		</trigger>
+		<select1 vellum:ref="#form/estado_civl" ref="/data/estado_civl">
+			<label ref="jr:itext('estado_civl-label')" />
+			<item>
+				<label ref="jr:itext('estado_civl-soltero-label')" />
+				<value>soltero</value>
+			</item>
+			<item>
+				<label ref="jr:itext('estado_civl-casado-label')" />
+				<value>casado</value>
+			</item>
+			<item>
+				<label ref="jr:itext('estado_civl-divorciado-label')" />
+				<value>divorciado</value>
+			</item>
+			<item>
+				<label ref="jr:itext('estado_civl-viudo-label')" />
+				<value>viudo</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/estudia" ref="/data/estudia">
+			<label ref="jr:itext('estudia-label')" />
+			<item>
+				<label ref="jr:itext('estudia-si_estudio-label')" />
+				<value>si_estudio</value>
+			</item>
+			<item>
+				<label ref="jr:itext('estudia-no_estudio-label')" />
+				<value>no_estudio</value>
+			</item>
+		</select1>
+		<select vellum:ref="#form/modulo_estudio" ref="/data/modulo_estudio">
+			<label ref="jr:itext('modulo_estudio-label')" />
+			<item>
+				<label ref="jr:itext('modulo_estudio-colegio-label')" />
+				<value>colegio</value>
+			</item>
+			<item>
+				<label ref="jr:itext('modulo_estudio-universidad-label')" />
+				<value>universidad</value>
+			</item>
+			<item>
+				<label ref="jr:itext('modulo_estudio-tecnico-label')" />
+				<value>tecnico</value>
+			</item>
+		</select>
+		<select1 vellum:ref="#form/trabaja" ref="/data/trabaja">
+			<label ref="jr:itext('trabaja-label')" />
+			<item>
+				<label ref="jr:itext('trabaja-si_trabaja-label')" />
+				<value>si_trabaja</value>
+			</item>
+			<item>
+				<label ref="jr:itext('trabaja-no_trabaja-label')" />
+				<value>no_trabaja</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/area_trabajo" ref="/data/area_trabajo">
+			<label ref="jr:itext('area_trabajo-label')" />
+		</input>
+		<select1 vellum:ref="#form/manera_trabajo" ref="/data/manera_trabajo">
+			<label ref="jr:itext('manera_trabajo-label')" />
+			<item>
+				<label ref="jr:itext('manera_trabajo-tiempo_completo-label')" />
+				<value>tiempo_completo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('manera_trabajo-medio_tiempo-label')" />
+				<value>medio_tiempo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('manera_trabajo-fines_de_semana-label')" />
+				<value>fines_de_semana</value>
+			</item>
+			<item>
+				<label ref="jr:itext('manera_trabajo-de_vez_en_cuando-label')" />
+				<value>de_vez_en_cuando</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/descendencia" ref="/data/descendencia">
+			<label ref="jr:itext('descendencia-label')" />
+			<item>
+				<label ref="jr:itext('descendencia-si_descendencia-label')" />
+				<value>si_descendencia</value>
+			</item>
+			<item>
+				<label ref="jr:itext('descendencia-no_descendencia-label')" />
+				<value>no_descendencia</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/cantidad_descendencia" ref="/data/cantidad_descendencia">
+			<label ref="jr:itext('cantidad_descendencia-label')" />
+			<hint ref="jr:itext('cantidad_descendencia-hint')" />
+		</input>
+		<group>
+			<label ref="jr:itext('datos_descendencia-label')" />
+			<repeat vellum:jr__count="#form/cantidad_descendencia" jr:count="/data/cantidad_descendencia" jr:noAddRemove="true()" vellum:nodeset="#form/datos_descendencia" nodeset="/data/datos_descendencia">
+				<input vellum:ref="#form/datos_descendencia/nombre_nino" ref="/data/datos_descendencia/nombre_nino">
+					<label ref="jr:itext('datos_descendencia/nombre_nino-label')" />
+				</input>
+				<input vellum:ref="#form/datos_descendencia/fecha_nacimiento_nino" ref="/data/datos_descendencia/fecha_nacimiento_nino">
+					<label ref="jr:itext('datos_descendencia/fecha_nacimiento_nino-label')" />
+				</input>
+				<trigger vellum:ref="#form/datos_descendencia/mostrar_edad_nino" ref="/data/datos_descendencia/mostrar_edad_nino" appearance="minimal">
+					<label ref="jr:itext('datos_descendencia/mostrar_edad_nino-label')" />
+				</trigger>
+				<select1 vellum:ref="#form/datos_descendencia/sexo_nino" ref="/data/datos_descendencia/sexo_nino">
+					<label ref="jr:itext('datos_descendencia/sexo_nino-label')" />
+					<item>
+						<label ref="jr:itext('datos_descendencia/sexo_nino-masculino-label')" />
+						<value>masculino</value>
+					</item>
+					<item>
+						<label ref="jr:itext('datos_descendencia/sexo_nino-femenino-label')" />
+						<value>femenino</value>
+					</item>
+				</select1>
+			</repeat>
+		</group>
+		<select1 vellum:ref="#form/enfermedades_cronicas" ref="/data/enfermedades_cronicas">
+			<label ref="jr:itext('enfermedades_cronicas-label')" />
+			<item>
+				<label ref="jr:itext('enfermedades_cronicas-si_cronica-label')" />
+				<value>si_cronica</value>
+			</item>
+			<item>
+				<label ref="jr:itext('enfermedades_cronicas-no_cronica-label')" />
+				<value>no_cronica</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/mencionar_cronica" ref="/data/mencionar_cronica">
+			<label ref="jr:itext('mencionar_cronica-label')" />
+		</input>
+		<select vellum:ref="#form/varias_enfermedades" ref="/data/varias_enfermedades">
+			<label ref="jr:itext('varias_enfermedades-label')" />
+			<item>
+				<label ref="jr:itext('varias_enfermedades-HTA-label')" />
+				<value>HTA</value>
+			</item>
+			<item>
+				<label ref="jr:itext('varias_enfermedades-diabetes-label')" />
+				<value>diabetes</value>
+			</item>
+			<item>
+				<label ref="jr:itext('varias_enfermedades-IRC-label')" />
+				<value>IRC</value>
+			</item>
+			<item>
+				<label ref="jr:itext('varias_enfermedades-enfermedad_respiratoria-label')" />
+				<value>enfermedad_respiratoria</value>
+			</item>
+			<item>
+				<label ref="jr:itext('varias_enfermedades-ninguna-label')" />
+				<value>ninguna</value>
+			</item>
+		</select>
+		<input vellum:ref="#form/enfermedad_respiratoria" ref="/data/enfermedad_respiratoria">
+			<label ref="jr:itext('enfermedad_respiratoria-label')" />
+		</input>
+		<select1 vellum:ref="#form/accidentes_laborales" ref="/data/accidentes_laborales">
+			<label ref="jr:itext('accidentes_laborales-label')" />
+			<item>
+				<label ref="jr:itext('accidentes_laborales-si_accidente_laboral-label')" />
+				<value>si_accidente_laboral</value>
+			</item>
+			<item>
+				<label ref="jr:itext('accidentes_laborales-no_accidente_laboral-label')" />
+				<value>no_accidente_laboral</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/que_accidente" ref="/data/que_accidente">
+			<label ref="jr:itext('que_accidente-label')" />
+		</input>
+		<select1 vellum:ref="#form/presenta_malestar" ref="/data/presenta_malestar">
+			<label ref="jr:itext('presenta_malestar-label')" />
+			<item>
+				<label ref="jr:itext('presenta_malestar-si_malestar-label')" />
+				<value>si_malestar</value>
+			</item>
+			<item>
+				<label ref="jr:itext('presenta_malestar-no_malestar-label')" />
+				<value>no_malestar</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/que_malestar" ref="/data/que_malestar">
+			<label ref="jr:itext('que_malestar-label')" />
+		</input>
+		<select vellum:ref="#form/lugar_cuerpo_malestar" ref="/data/lugar_cuerpo_malestar">
+			<label ref="jr:itext('lugar_cuerpo_malestar-label')" />
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-cabeza-label')" />
+				<value>cabeza</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-rostro-label')" />
+				<value>rostro</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-garganta-label')" />
+				<value>garganta</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-nuca-label')" />
+				<value>nuca</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-trapecios-label')" />
+				<value>trapecios</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-hombro_derecho-label')" />
+				<value>hombro_derecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-mano_derecha-label')" />
+				<value>mano_derecha</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-dedos_de_la_mano_derecha-label')" />
+				<value>dedos_de_la_mano_derecha</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-brazo_derecho-label')" />
+				<value>brazo_derecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-ante_brazo_derecho-label')" />
+				<value>ante_brazo_derecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-mano_izquierda-label')" />
+				<value>mano_izquierda</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-dedos_de_la_mano_izquierda-label')" />
+				<value>dedos_de_la_mano_izquierda</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-brazo_izquierdo-label')" />
+				<value>brazo_izquierdo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-ante_brazo_izquierdo-label')" />
+				<value>ante_brazo_izquierdo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-pecho-label')" />
+				<value>pecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-estomago-label')" />
+				<value>estomago</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-espalda-label')" />
+				<value>espalda</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-cintura-label')" />
+				<value>cintura</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-gluteos-label')" />
+				<value>gluteos</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-pierna_derecha-label')" />
+				<value>pierna_derecha</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-tobillo_derecho-label')" />
+				<value>tobillo_derecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-talon_derecho-label')" />
+				<value>talon_derecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-pie_derecho-label')" />
+				<value>pie_derecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-dedos_del_pie_derecho-label')" />
+				<value>dedos_del_pie_derecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-planta_pie_derecho-label')" />
+				<value>planta_pie_derecho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-pierna_izquierda-label')" />
+				<value>pierna_izquierda</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-tobillo_izquierdo-label')" />
+				<value>tobillo_izquierdo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-talon_izquierdo-label')" />
+				<value>talon_izquierdo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-pie_izquierdo-label')" />
+				<value>pie_izquierdo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-dedos_del_pie_izquierdo-label')" />
+				<value>dedos_del_pie_izquierdo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-talon_del_pie_izquierdo-label')" />
+				<value>talon_del_pie_izquierdo</value>
+			</item>
+			<item>
+				<label ref="jr:itext('lugar_cuerpo_malestar-Ninguno-label')" />
+				<value>Ninguno</value>
+			</item>
+		</select>
+		<select1 vellum:ref="#form/tiempo_con_malestares" ref="/data/tiempo_con_malestares">
+			<label ref="jr:itext('tiempo_con_malestares-label')" />
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-Menos_de_un_dia-label')" />
+				<value>Menos_de_un_dia</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-un_dia-label')" />
+				<value>un_dia</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-dos_a_cinco_dias-label')" />
+				<value>dos_a_cinco_dias</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-una_semana-label')" />
+				<value>una_semana</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-de_dos_a_cinco_semanas-label')" />
+				<value>de_dos_a_cinco_semanas</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-un_mes-label')" />
+				<value>un_mes</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-de_dos_a_cinco_meses-label')" />
+				<value>de_dos_a_cinco_meses</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-diez_meses-label')" />
+				<value>diez_meses</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-un_año-label')" />
+				<value>un_año</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-de_dos_a_cinco_años-label')" />
+				<value>de_dos_a_cinco_años</value>
+			</item>
+			<item>
+				<label ref="jr:itext('tiempo_con_malestares-mas_de_diez_años-label')" />
+				<value>mas_de_diez_años</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/frecuencia_malestares" ref="/data/frecuencia_malestares">
+			<label ref="jr:itext('frecuencia_malestares-label')" />
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-cada_minuto-label')" />
+				<value>cada_minuto</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-cada_media_hora-label')" />
+				<value>cada_media_hora</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-cada_hora-label')" />
+				<value>cada_hora</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-cada_dia-label')" />
+				<value>cada_dia</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-una_vez_a_la_semana-label')" />
+				<value>una_vez_a_la_semana</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-de_dos_a_cinco_veces_a_la_semana-label')" />
+				<value>de_dos_a_cinco_veces_a_la_semana</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-mas_de_cinco_veces_a_la_semana-label')" />
+				<value>mas_de_cinco_veces_a_la_semana</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-una_vez_al_mes-label')" />
+				<value>una_vez_al_mes</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-de_dos_a_cinco_veces_al_mes-label')" />
+				<value>de_dos_a_cinco_veces_al_mes</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-mas_de_cinco_veces_al_mes-label')" />
+				<value>mas_de_cinco_veces_al_mes</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-solo_una_vez_lo_he_sentido-label')" />
+				<value>solo_una_vez_lo_he_sentido</value>
+			</item>
+			<item>
+				<label ref="jr:itext('frecuencia_malestares-nunca-label')" />
+				<value>nunca</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/duracion_malestares" ref="/data/duracion_malestares">
+			<label ref="jr:itext('duracion_malestares-label')" />
+			<item>
+				<label ref="jr:itext('duracion_malestares-menos_de_un_minuto-label')" />
+				<value>menos_de_un_minuto</value>
+			</item>
+			<item>
+				<label ref="jr:itext('duracion_malestares-de_2_a_5_minutos-label')" />
+				<value>de_2_a_5_minutos</value>
+			</item>
+			<item>
+				<label ref="jr:itext('duracion_malestares-de_6_a_15_minutos-label')" />
+				<value>de_6_a_15_minutos</value>
+			</item>
+			<item>
+				<label ref="jr:itext('duracion_malestares-una_hora-label')" />
+				<value>una_hora</value>
+			</item>
+			<item>
+				<label ref="jr:itext('duracion_malestares-de_dos_a_cinco_horas-label')" />
+				<value>de_dos_a_cinco_horas</value>
+			</item>
+			<item>
+				<label ref="jr:itext('duracion_malestares-de_seis_a_quince_horas-label')" />
+				<value>de_seis_a_quince_horas</value>
+			</item>
+			<item>
+				<label ref="jr:itext('duracion_malestares-veinticuatro_horas-label')" />
+				<value>veinticuatro_horas</value>
+			</item>
+			<item>
+				<label ref="jr:itext('duracion_malestares-nunca_lo_he_medido-label')" />
+				<value>nunca_lo_he_medido</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/siente_dolor" ref="/data/siente_dolor">
+			<label ref="jr:itext('siente_dolor-label')" />
+			<item>
+				<label ref="jr:itext('siente_dolor-si_dolor-label')" />
+				<value>si_dolor</value>
+			</item>
+			<item>
+				<label ref="jr:itext('siente_dolor-no_dolor-label')" />
+				<value>no_dolor</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/que_tan_intenso" ref="/data/que_tan_intenso">
+			<label ref="jr:itext('que_tan_intenso-label')" />
+			<item>
+				<label ref="jr:itext('que_tan_intenso-A_penas_se_siente-label')" />
+				<value>A_penas_se_siente</value>
+			</item>
+			<item>
+				<label ref="jr:itext('que_tan_intenso-duele_un_poco-label')" />
+				<value>duele_un_poco</value>
+			</item>
+			<item>
+				<label ref="jr:itext('que_tan_intenso-resistible-label')" />
+				<value>resistible</value>
+			</item>
+			<item>
+				<label ref="jr:itext('que_tan_intenso-duele_mucho-label')" />
+				<value>duele_mucho</value>
+			</item>
+			<item>
+				<label ref="jr:itext('que_tan_intenso-el_dolor_me_doble-label')" />
+				<value>el_dolor_me_doble</value>
+			</item>
+			<item>
+				<label ref="jr:itext('que_tan_intenso-es_insoportable-label')" />
+				<value>es_insoportable</value>
+			</item>
+			<item>
+				<label ref="jr:itext('que_tan_intenso-no_lo_se-label')" />
+				<value>no_lo_se</value>
+			</item>
+		</select1>
+		<select1 vellum:ref="#form/inquietudes_paciente" ref="/data/inquietudes_paciente">
+			<label ref="jr:itext('inquietudes_paciente-label')" />
+			<item>
+				<label ref="jr:itext('inquietudes_paciente-si_inquietud-label')" />
+				<value>si_inquietud</value>
+			</item>
+			<item>
+				<label ref="jr:itext('inquietudes_paciente-no_inquietud-label')" />
+				<value>no_inquietud</value>
+			</item>
+		</select1>
+		<input vellum:ref="#form/escribir_inquietud" ref="/data/escribir_inquietud">
+			<label ref="jr:itext('escribir_inquietud-label')" />
+		</input>
+		<upload mediatype="image/*" vellum:ref="#form/firma_paciente" ref="/data/firma_paciente" appearance="signature">
+			<label ref="jr:itext('firma_paciente-label')" />
+		</upload>
+	</h:body>
+</h:html>
